@@ -9,7 +9,7 @@ function wrapAct() {
     throw new Error('no global Errors found');
   }
 
-  let act = promisify(this.seneca.act, { context: this.seneca });
+  let act = promisify(this.seneca.act.bind(this.seneca));
 
   // expose global promise act
   global.act = async function actAsync(msg, ...args) {
